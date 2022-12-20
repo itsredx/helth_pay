@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import '../constants.dart';
+
 class TransactionPage extends StatefulWidget {
+  const TransactionPage({super.key});
+
   @override
   _TransactionPageState createState() => _TransactionPageState();
 }
@@ -14,372 +18,557 @@ class _TransactionPageState extends State<TransactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.all(15),
-              padding: const EdgeInsets.all(0),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      backgroundColor: const Color(0xFFEBEFF3),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(onPressed: (){
+        },
+        icon: const Icon(Icons.arrow_back, color: Colors.black,),
+        ),
+        title: const Text('Transaction History', style: TextStyle(color: Colors.black, fontSize: 15),),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(right: 15, left: 15, top: 15, bottom: 15),
+              child: Row(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              transactionButtonColor = 0xFF016BFB;
-                              commissionButtonColor = 0xFFFFFFFF;
-                              transactionTextColor = Colors.white;
-                              commissionTextColor = Colors.black;
-                              // if(transactionHistory == true){
-                              // setState(() {
-                              //   transactionButtonColor = 0xFF016BFB;
-                              // });}else if (transactionHistory == false){
-                              //   setState(() {
-                              //     transactionButtonColor = 0xFFFFFFFF;
-                              //   });
-                              // }
-
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 17.8, vertical: 10),
-                            decoration: BoxDecoration(
-                                border:
-                                Border.all(color: const Color(0xFF016BFB)),
-                                color: Color(transactionButtonColor),
-                                borderRadius: const BorderRadius.horizontal(
-                                    left: Radius.circular(5))),
-                            child:
-                            Center(child: Text('Transaction History',
-                              style: TextStyle(
-                                  fontSize: 13, color: transactionTextColor),)),
-                          ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.search, color: Color(0xFFBAC6D8), size: 20,),
+                            SizedBox(width: 10,),
+                            Expanded(
+                              child: TextField(
+                                textAlignVertical: TextAlignVertical.top,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Search by name, Amount, Date',
+                                  hintStyle: TextStyle(fontSize: 15, color: Color(0xFFBAC6D8))
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              transactionButtonColor = 0xFFFFFFFF;
-                              commissionButtonColor = 0xFF016BFB;
-                              transactionTextColor = Colors.black;
-                              commissionTextColor = Colors.white;
-                              // if(transactionHistory == true){
-                              //   setState(() {
-                              //     transactionHistory = false;
-                              //     transactionButtonColor = 0xFFFFFFFF;
-                              //     commissionButtonColor = 0xFF016BFB;
-                              //   });
-                              // }else if(transactionHistory == false){
-                              //   setState(() {
-                              //     commissionButtonColor = 0xFF016BFB;
-                              //   });
-                              // }
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 17.7, vertical: 10),
-                            decoration: BoxDecoration(
-                                border:
-                                Border.all(color: const Color(0xFF016BFB)),
-                                color: Color(commissionButtonColor),
-                                borderRadius: const BorderRadius.horizontal(
-                                    right: Radius.circular(5))),
-                            child:
-                            Center(child: Text('Commission History',
-                              style: TextStyle(
-                                  fontSize: 13, color: commissionTextColor),)),
-                          ),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
+                  const SizedBox(width: 12,),
                   Expanded(
+                    flex: 1,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Usman Muhammad'),
-                                  Text('N21,650', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              ),
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Abdulahi Musa'),
-                                  Text('N50,000', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Isa Ismail'),
-                                  Text('N50,000', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Aminu Abubakar'),
-                                  Text('N60,000', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Sarki Abdulkadir'),
-                                  Text('N60,000', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Amina Abba'),
-                                  Text('N200,000', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Row(
-                            children: [
-                              roundEdgeButton,
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Hamisu Abba Isa'),
-                                  Text('N10.650', style: TextStyle(
-                                      fontSize: 12, color: Color(0xFFBAC6D8)),)
-                                ],
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: roundedButton,
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            color: Color(0xFFDDE3EC),
-                            height: 0,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                        ],
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8.5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: Colors.white,
+                      ),
+                      //width: 14,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.toggle_off_outlined, size: 15, color: Color(0xFFBAC6D8)),
+                            Icon(Icons.toggle_on_outlined, size: 15, color: Color(0xFFBAC6D8)),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Container(
-              margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 64),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 30,
-                    width: 33,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF016BFB),
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+            Container(
+              height: MediaQuery.of(context).size.height - 194,
+              margin: const EdgeInsets.only(bottom: 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 250,
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Text('14 Nov 2021',style: TextStyle(
+                                      fontSize: 12, color: Color(0xFFBAC6D8)),),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Usman Muhammad'),
+                                          Text('11:00 AM   |   N21,650', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Abdulahi Musa'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Isa Ismail'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Aminu Abubakar'),
+                                          Text('11:00 AM   |   N60,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: const Center(child: Text(
-                      '1', style: TextStyle(color: Colors.white),)),
-                  ),
-                  const SizedBox(width: 6,),
-                  Container(
-                    height: 30,
-                    width: 33,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    Container(
+                      height: 250,
+                      margin: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Text('14 Nov 2021',style: TextStyle(
+                                      fontSize: 12, color: Color(0xFFBAC6D8)),),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Usman Muhammad'),
+                                          Text('11:00 AM   |   N21,650', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Abdulahi Musa'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Isa Ismail'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Aminu Abubakar'),
+                                          Text('11:00 AM   |   N60,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: const Center(child: Text('2')),
-                  ),
-                  const SizedBox(width: 6,),
-                  Container(
-                    height: 30,
-                    width: 33,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    Container(
+                      height: 250,
+                      margin: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Text('14 Nov 2021',style: TextStyle(
+                                      fontSize: 12, color: Color(0xFFBAC6D8)),),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Usman Muhammad'),
+                                          Text('11:00 AM   |   N21,650', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Abdulahi Musa'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Isa Ismail'),
+                                          Text('11:00 AM   |   N50,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                  const Divider(
+                                    color: Color(0xFFDDE3EC),
+                                    height: 0,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      roundEdgeButton,
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: const [
+                                          Text('Aminu Abubakar'),
+                                          Text('11:00 AM   |   N60,000', style: TextStyle(
+                                              fontSize: 12, color: Color(0xFFBAC6D8)),)
+                                        ],
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: roundedButton,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: const Center(child: Text('3')),
-                  ),
-                  const SizedBox(width: 6,),
-                  Container(
-                    height: 30,
-                    width: 33,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    child: const Center(child: Text('...')),
-                  ),
-                  const SizedBox(width: 6,),
-                  Container(
-                    height: 30,
-                    width: 66,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF016BFB),
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    child: const Center(child: Text(
-                      'Next', style: TextStyle(color: Colors.white),)),
-                  ),
-                ],
-              ))
-        ],
+                  ],
+                ),
+              ),
+            ),
+            // Container(
+            //     margin: const EdgeInsets.only(top: 10, bottom: 10),
+            //     //padding: const EdgeInsets.symmetric(horizontal: 44),
+            //     child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         Container(
+            //           height: 30,
+            //           width: 33,
+            //           decoration: const BoxDecoration(
+            //             color: Color(0xFF016BFB),
+            //             borderRadius: BorderRadius.all(Radius.circular(4)),
+            //           ),
+            //           child: const Center(child: Text(
+            //             '1', style: kCurrentTransactionHistoryPage,)),
+            //         ),
+            //         const SizedBox(width: 6,),
+            //         Container(
+            //           height: 30,
+            //           width: 25,
+            //           decoration: const BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.all(Radius.circular(4)),
+            //           ),
+            //           child: const Center(child: Text('2', style: kTransactionPageRefrence,)),
+            //         ),
+            //         const SizedBox(width: 6,),
+            //         Container(
+            //           height: 30,
+            //           width: 25,
+            //           decoration: const BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.all(Radius.circular(4)),
+            //           ),
+            //           child: const Center(child: Text('3', style: kTransactionPageRefrence)),
+            //         ),
+            //         const SizedBox(width: 6,),
+            //         Container(
+            //           height: 30,
+            //           width: 25,
+            //           decoration: const BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.all(Radius.circular(4)),
+            //           ),
+            //           child: const Center(child: Text('...', style: kTransactionPageRefrence,)),
+            //         ),
+            //         const SizedBox(width: 6,),
+            //         Container(
+            //           height: 30,
+            //           width: 50,
+            //           decoration: const BoxDecoration(
+            //             color: Color(0xFF016BFB),
+            //             borderRadius: BorderRadius.all(Radius.circular(4)),
+            //           ),
+            //           child: const Center(child: Text(
+            //               'Next', style: kCurrentTransactionHistoryPage),
+            //           ),)
+            //       ],
+            //     ))
+          ],
+        ),
       ),
     );
   }

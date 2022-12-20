@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           Column(
             children: [
               Container(
-                height: 150,
+                height: 120,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -59,12 +59,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                         width: 250,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Column(crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text('Wallet Balance', style: kCardTextStyle,),
                                   Row(
@@ -79,10 +79,15 @@ class _HomePageState extends State<HomePage> {
                                       Text(kWalletBalance, style: kWalletBalanceTextStyle,),
                                     ],
                                   ),
-                                  const SizedBox(height: 30,),
+                                  // const SizedBox(height: 30,),
                                 ],
                               ),
-                              const Text('View Transaction >', style: kCardTextStyle,),
+                              Row(
+                                children: const [
+                                  Text('View Transaction ', style: kCardTextStyle,),
+                                  Icon(Icons.arrow_forward, color: Colors.white, size: 13,)
+                                ],
+                              ),
                             ],
                           ),
                         ),
