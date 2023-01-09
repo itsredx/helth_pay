@@ -50,13 +50,11 @@ class _HomeState extends State<Home> {
                     SizedBox(
                       height: 20,
                       child: Image.asset(
-                        'lib/icons/home.png',
+                        'lib/icons/real home.png',
                         color: currentTab == 0 ? Color(myBlue) : Colors.grey,
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+
                     // Icon(Icons.home_rounded,
                     //     color: currentTab == 0 ? Color(myBlue) : Colors.grey),
                     Text(
@@ -79,9 +77,9 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 25,
+                      height: 20,
                       child: Image.asset(
-                        'lib/icons/transaction.png',
+                        'lib/icons/real transaction.png',
                         color: currentTab == 1 ? Color(myBlue) : Colors.grey,
                       ),
                     ),
@@ -113,9 +111,7 @@ class _HomeState extends State<Home> {
                         color: currentTab == 3 ? Color(myBlue) : Colors.grey,
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+
                     // Icon(Icons.person_outline_rounded,
                     //     color: currentTab == 3 ? Color(myBlue) : Colors.grey),
                     Text(
