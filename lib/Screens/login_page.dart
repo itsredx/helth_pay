@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
 import 'package:helth_pay/Components/my_text_field.dart';
+import 'package:helth_pay/Screens/create_pin_page.dart';
 
 import '../constants.dart';
 import '../home.dart';
@@ -75,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                         currentScreen = const DashboardPage();
                         currentTab = 0;
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return  PageStorage(bucket: bucket, child: Home() );
+                          return  CreatePINPage();//PageStorage(bucket: bucket, child: Home() );
                         }));
                       });
                     },

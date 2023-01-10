@@ -5,14 +5,14 @@ import '../Components/round_edge_button.dart';
 import '../constants.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
 
-class ChangePINPage extends StatefulWidget {
-  const ChangePINPage({Key? key}) : super(key: key);
+class CreatePINPage extends StatefulWidget {
+  const CreatePINPage({Key? key}) : super(key: key);
 
   @override
-  State<ChangePINPage> createState() => _ChangePINPageState();
+  State<CreatePINPage> createState() => _CreatePINPageState();
 }
 
-class _ChangePINPageState extends State<ChangePINPage> {
+class _CreatePINPageState extends State<CreatePINPage> {
   final List<dynamic> buttons = [
     const Text(
       '1',
@@ -90,7 +90,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
           ),
         ),
         title: const Text(
-          'Change PIN',
+          'Create PIN',
           style: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
@@ -131,7 +131,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                     height: 15,
                   ),
                   const Text(
-                    'Change PIN',
+                    'Create PIN',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
@@ -202,13 +202,10 @@ class _ChangePINPageState extends State<ChangePINPage> {
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return RetypePINPage();
-                        }));
-                      },
-                      child: BottomButton(buttonTitle: 'Proceed', ),
-                    ),
+                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return RetypePINPage();
+                    }));},
+                        child: BottomButton(buttonTitle: 'Proceed')),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

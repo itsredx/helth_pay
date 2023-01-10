@@ -411,32 +411,34 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                         BlueTransactionData(
                           transactionAmount: 'N21,650',
-                          transactionName: 'Usman Muhammad',
+                          transactionName: 'Usman Muhammad', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',
                         ),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Abdulahi Musa',
-                            transactionAmount: 'N50,000'),
+                            transactionAmount: 'N50,000', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                         MyDivider(),
                         RedTransactionData(
+                          transactionTime: '10:00 AM',
+                          transactionDate: '14 Nov 2021',
                             transactionName: 'Isa Ismail',
                             transactionAmount: 'N50,000'),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Aminu Abubakar',
-                            transactionAmount: 'N60,000'),
+                            transactionAmount: 'N60,000', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Sarki Abdulkadir',
-                            transactionAmount: 'N60,000'),
+                            transactionAmount: 'N60,000', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Amina Abba',
-                            transactionAmount: 'N200,000'),
+                            transactionAmount: 'N200,000', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Hamisu Abba Isa',
-                            transactionAmount: 'N10,650'),
+                            transactionAmount: 'N10,650', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                       ],
                     ),
                   ),
@@ -463,7 +465,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       BlueTransactionData(
                         transactionAmount: 'N21,650',
-                        transactionName: 'Usman Muhammad',
+                        transactionName: 'Usman Muhammad', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',
                       ),
                     ],
                   ),
@@ -491,12 +493,12 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                         BlueTransactionData(
                           transactionAmount: 'N21,650',
-                          transactionName: 'Usman Muhammad',
+                          transactionName: 'Usman Muhammad', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',
                         ),
                         MyDivider(),
                         BlueTransactionData(
                             transactionName: 'Abdulahi Musa',
-                            transactionAmount: 'N50,000'),
+                            transactionAmount: 'N50,000', transactionDate: '14 Nov 2021', transactionTime: '10:00 am',),
                       ],
                     ),
                   ),

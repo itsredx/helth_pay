@@ -10,7 +10,7 @@ class RoundedEdgeButton extends StatelessWidget {
       this.buttonColor = const Color(0xFFE4F1FE),
       this.height = 28,
       this.width = 28,
-      this.iconSize = 15})
+      this.iconSize = 15, this.child})
       : super(key: key);
 
   final IconData? buttonIcon;
@@ -20,6 +20,7 @@ class RoundedEdgeButton extends StatelessWidget {
   final double? height;
   final double? width;
   final double? iconSize;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +33,30 @@ class RoundedEdgeButton extends StatelessWidget {
       ),
       child: Transform.rotate(
         angle: 315 * pi / iconRotation!,
-        child: Icon(
-          buttonIcon,
-          color: buttonIconColor,
-          size: iconSize,
-        ),
+        child: child ?? MyIcon(buttonIcon: buttonIcon, buttonIconColor: buttonIconColor, iconSize: iconSize)
       ),
+    );
+  }
+}
+
+class MyIcon extends StatelessWidget {
+  const MyIcon({
+    Key? key,
+    required this.buttonIcon,
+    required this.buttonIconColor,
+    required this.iconSize,
+  }) : super(key: key);
+
+  final IconData? buttonIcon;
+  final Color? buttonIconColor;
+  final double? iconSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      buttonIcon,
+      color: buttonIconColor,
+      size: iconSize,
     );
   }
 }

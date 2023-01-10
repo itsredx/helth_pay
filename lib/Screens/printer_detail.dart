@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:helth_pay/Components/round_edge_button.dart';
-import 'package:helth_pay/Components/bottom_button.dart';
-import 'package:helth_pay/Screens/connect_printer_screen.dart';
-import 'package:helth_pay/Screens/dashboard_page.dart';
+
+import '../Components/bottom_button.dart';
+import '../Components/round_edge_button.dart';
 import '../constants.dart';
 import '../home.dart';
+import 'connect_printer_screen.dart';
+import 'dashboard_page.dart';
 
-class PrintPage extends StatefulWidget {
-  const PrintPage({Key? key}) : super(key: key);
+class PrinterDetails extends StatefulWidget {
+  const PrinterDetails({Key? key, required this.printerName}) : super(key: key);
+
+  final String printerName;
 
   @override
-  State<PrintPage> createState() => _PrintPageState();
+  State<PrinterDetails> createState() => _PrinterDetailsState();
 }
 
-class _PrintPageState extends State<PrintPage> {
+class _PrinterDetailsState extends State<PrinterDetails> {
   @override
   Widget build(BuildContext context) {
+    final String printerName = widget.printerName;
     return Scaffold(
       backgroundColor: const Color(0xFFEBEFF3),
       appBar: AppBar(
@@ -23,17 +27,17 @@ class _PrintPageState extends State<PrintPage> {
         leading: IconButton(
           onPressed: () {
             setState(() {
-            currentScreen = DashboardPage();
-            currentTab = 0;
-          });
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Home();
-              },
-            ),
-          );
+              currentScreen = ConnectPrinter();
+              currentTab = 0;
+            });
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Home();
+                },
+              ),
+            );
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -52,8 +56,8 @@ class _PrintPageState extends State<PrintPage> {
             Container(
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5)
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5)
               ),
               height: 200,
               child: Column(
@@ -73,9 +77,9 @@ class _PrintPageState extends State<PrintPage> {
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text('Printer Name', style: TextStyle(color: Colors.grey),),
-                        Text('Not Available')
+                      children:  [
+                        const Text('Printer Name', style: TextStyle(color: Colors.grey),),
+                        Text(printerName)
                       ],
                     ),
                   ),
@@ -94,8 +98,8 @@ class _PrintPageState extends State<PrintPage> {
                         const Text('Printer Status',style: TextStyle(color: Colors.grey),),
                         Row(
                           children: const [
-                            Icon(Icons.do_not_disturb_on_total_silence, size: 13,),
-                            Text(' Disconnected'),
+                            Icon(Icons.circle, size: 13, color: Colors.green,),
+                            Text(' Connected'),
                           ],
                         )
                       ],
@@ -117,7 +121,7 @@ class _PrintPageState extends State<PrintPage> {
                 });
               },
               child: const BottomButton(
-                  buttonTitle: 'Connect Printer',
+                buttonTitle: 'Connect Printer',
               ),
             ),
           ],

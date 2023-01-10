@@ -6,6 +6,7 @@ import 'Screens/payment_page.dart';
 import 'Screens/print_page.dart';
 import 'Screens/transaction_receipt_page.dart';
 import 'constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -49,14 +50,12 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     SizedBox(
                       height: 20,
-                      child: Image.asset(
-                        'lib/icons/real home.png',
-                        color: currentTab == 0 ? Color(myBlue) : Colors.grey,
-                      ),
+                      child:
+                      SvgPicture.asset('lib/icons/home-Regular.svg',
+                        semanticsLabel: 'Dashboard',
+                        color: currentTab == 0 ? Color(myBlue) : Colors.grey,),
                     ),
 
-                    // Icon(Icons.home_rounded,
-                    //     color: currentTab == 0 ? Color(myBlue) : Colors.grey),
                     Text(
                       'Home',
                       style: TextStyle(
@@ -78,13 +77,15 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     SizedBox(
                       height: 20,
-                      child: Image.asset(
-                        'lib/icons/real transaction.png',
-                        color: currentTab == 1 ? Color(myBlue) : Colors.grey,
+                      child: Column(
+                        children: [
+                          SvgPicture.asset('lib/icons/arrow-up-Regular.svg',
+                            color: currentTab == 1 ? Color(myBlue) : Colors.grey,),
+                          SvgPicture.asset('lib/icons/arrow-down-Regular.svg',
+                            color: currentTab == 1 ? Color(myBlue) : Colors.grey,),
+                        ],
                       ),
                     ),
-                    // Icon(Icons.transfer_within_a_station_rounded,
-                    //     color: currentTab == 1 ? Color(myBlue) : Colors.grey),
                     Text(
                       'Transaction',
                       style: TextStyle(
@@ -106,14 +107,11 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     SizedBox(
                       height: 20,
-                      child: Image.asset(
-                        'lib/icons/user.png',
-                        color: currentTab == 3 ? Color(myBlue) : Colors.grey,
-                      ),
+                      child:
+                      SvgPicture.asset('lib/icons/user-Regular.svg',
+                        color: currentTab == 3 ? Color(myBlue) : Colors.grey,),
                     ),
 
-                    // Icon(Icons.person_outline_rounded,
-                    //     color: currentTab == 3 ? Color(myBlue) : Colors.grey),
                     Text(
                       'Profile',
                       style: TextStyle(

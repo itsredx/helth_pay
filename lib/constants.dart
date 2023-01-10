@@ -27,3 +27,12 @@ bool kTransactionPage = false;
 bool kProfilePage = false;
 
 
+Map<String, dynamic> Data = {
+  'Name': 'Usman Muhammad',
+  'Invoice Number':'12345',
+  'Time':'10:00 am',
+  'Date':'17, Jan, 2020',
+  'Amount':'N20,650',
+};
+
+

@@ -26,6 +26,7 @@ class _TransactionPageState extends State<TransactionPage> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +39,7 @@ class _TransactionPageState extends State<TransactionPage> {
               currentScreen = const DashboardPage();
               currentTab = 0;
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return  PageStorage(bucket: bucket, child: Home() );
+                return  PageStorage(bucket: bucket, child: const Home() );
               }));
             });
           },
@@ -206,9 +207,9 @@ class TransactionByDate extends StatelessWidget {
                           fontSize: 12, color: Color(0xFFBAC6D8)),
                     ),
                     BlueTransactionTile(
-                      transactionName: 'Usman Muhammad',
-                      transactionTime: '11:00 AM',
-                      transactionAmount: 'N21,650',
+                      transactionName: Data['Name'],
+                      transactionTime: Data['Time'],
+                      transactionAmount: Data['Amount'],
                       transactionDate: transactionDate,
                     ),
                     const Divider(
@@ -260,4 +261,5 @@ class TransactionByDate extends StatelessWidget {
     );
   }
 }
+
 

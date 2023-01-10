@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:helth_pay/Screens/retype_pin_page.dart';
 import '../Components/round_edge_button.dart';
 import '../constants.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
 
-class ChangePINPage extends StatefulWidget {
-  const ChangePINPage({Key? key}) : super(key: key);
+import '../home.dart';
+import 'dashboard_page.dart';
+
+class RetypePINPage extends StatefulWidget {
+  const RetypePINPage({Key? key}) : super(key: key);
 
   @override
-  State<ChangePINPage> createState() => _ChangePINPageState();
+  State<RetypePINPage> createState() => _RetypePINPageState();
 }
 
-class _ChangePINPageState extends State<ChangePINPage> {
+class _RetypePINPageState extends State<RetypePINPage> {
   final List<dynamic> buttons = [
     const Text(
       '1',
@@ -90,7 +92,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
           ),
         ),
         title: const Text(
-          'Change PIN',
+          'Retype PIN',
           style: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
@@ -131,7 +133,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                     height: 15,
                   ),
                   const Text(
-                    'Change PIN',
+                    'Retype PIN',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
@@ -203,11 +205,15 @@ class _ChangePINPageState extends State<ChangePINPage> {
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return RetypePINPage();
-                        }));
+                        setState(() {
+                          currentScreen = const DashboardPage();
+                          currentTab = 0;
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return  PageStorage(bucket: bucket, child: Home() );
+                          }));
+                        });
                       },
-                      child: BottomButton(buttonTitle: 'Proceed', ),
+                      child: BottomButton(buttonTitle: 'Proceed'),
                     ),
                   ),
                   Row(

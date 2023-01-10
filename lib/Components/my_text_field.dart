@@ -1,14 +1,19 @@
+
 import 'package:flutter/material.dart';
 
 
+TextEditingController _textEditingController = TextEditingController();
+
 class MyTextField extends StatelessWidget {
   const MyTextField({
-    Key? key, required this.hintText, this.prefixIcon, this.suffixIcon,
+    Key? key, required this.hintText, this.prefixIcon, this.suffixIcon, this.onChange,
   }) : super(key: key);
+
 
   final String hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Function(String)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,8 @@ class MyTextField extends StatelessWidget {
         color: Colors.white,
       ),
       child: TextField(
+        controller: _textEditingController,
+        onChanged: onChange,
         textAlignVertical: TextAlignVertical.top,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
