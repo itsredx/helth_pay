@@ -3,7 +3,6 @@ import 'package:helth_pay/Components/my_divider.dart';
 import 'package:helth_pay/Components/paired_printer.dart';
 import 'package:helth_pay/Screens/change_pin_page.dart';
 import 'package:helth_pay/Screens/print_page.dart';
-
 import '../Components/bottom_button.dart';
 import '../Components/transaction_tiles.dart';
 import '../constants.dart';

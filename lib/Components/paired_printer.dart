@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:helth_pay/Components/round_edge_button.dart';
 import 'package:helth_pay/Components/rounded_Button.dart';
 import 'package:helth_pay/Screens/printer_detail.dart';
-
 import '../constants.dart';
 import '../home.dart';
 

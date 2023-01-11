@@ -94,105 +94,105 @@ class _CreatePINPageState extends State<CreatePINPage> {
           style: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 80, bottom: 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFE4F1FE),
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 110, bottom: 60),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFE4F1FE),
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          'lib/icons/key.svg',
+                          color: Color(myBlue),
+                        ),
+                      ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(
-                        'lib/icons/key.svg',
-                        color: Color(myBlue),
+                    // RoundedEdgeButton(
+                    //   height: 50,
+                    //   width: 50,
+                    //   iconSize: 25,
+                    //   child: Image.asset('lib/icons/key.svg',
+                    //     color: currentTab == 0 ? Color(myBlue) : Colors.grey,),
+                    // ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
+                      'Create PIN',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'Change your PIN to help secure',
+                      style: TextStyle(
+                        color: Colors.grey,
                       ),
                     ),
-                  ),
-                  // RoundedEdgeButton(
-                  //   height: 50,
-                  //   width: 50,
-                  //   iconSize: 25,
-                  //   child: Image.asset('lib/icons/key.svg',
-                  //     color: currentTab == 0 ? Color(myBlue) : Colors.grey,),
-                  // ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    'Create PIN',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'Change your PIN to help secure',
-                    style: TextStyle(
-                      color: Colors.grey,
+                    const Text(
+                      'your account',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                  ),
-                  const Text(
-                    'your account',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFEBEFF3),
-                          borderRadius: BorderRadius.circular(3),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEBEFF3),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFEBEFF3),
-                          borderRadius: BorderRadius.circular(3),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEBEFF3),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFEBEFF3),
-                          borderRadius: BorderRadius.circular(3),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEBEFF3),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFEBEFF3),
-                          borderRadius: BorderRadius.circular(3),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEBEFF3),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
+            Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15, vertical: 10.0),
               child: Column(
@@ -293,9 +293,9 @@ class _CreatePINPageState extends State<CreatePINPage> {
                   ),
                 ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

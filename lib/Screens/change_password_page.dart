@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
 import 'package:helth_pay/Components/my_text_field.dart';
 import 'package:helth_pay/Screens/profile_page.dart';
-
 import '../constants.dart';
 import '../home.dart';
 import 'dashboard_page.dart';
@@ -23,7 +22,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            setState(() {
+              currentScreen = ProfilePage();
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return Home();
+              }));
+            });
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -37,33 +41,35 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
-        child: Column(
-          children: [
-            const MyTextField(
-              hintText: 'Current Password',
-              prefixIcon: Icon(Icons.lock_outline_rounded),
-              suffixIcon: Icon(Icons.remove_red_eye_outlined),
-            ),
-            const SizedBox(height: 15,),
-            const MyTextField(
-              hintText: 'New Password',
-              prefixIcon: Icon(Icons.lock_outline_rounded),
-              suffixIcon: Icon(Icons.remove_red_eye_outlined),
-            ),
-            const SizedBox(height: 15,),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const MyTextField(
+                hintText: 'Current Password',
+                prefixIcon: Icon(Icons.lock_outline_rounded),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined),
+              ),
+              const SizedBox(height: 15,),
+              const MyTextField(
+                hintText: 'New Password',
+                prefixIcon: Icon(Icons.lock_outline_rounded),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined),
+              ),
+              const SizedBox(height: 15,),
 
-            const MyTextField(
-              hintText: 'Retype New Password',
-              prefixIcon: Icon(Icons.lock_outline_rounded),
-              suffixIcon: Icon(Icons.remove_red_eye_outlined),
-            ),
-            const SizedBox(height: 15,),
+              const MyTextField(
+                hintText: 'Retype New Password',
+                prefixIcon: Icon(Icons.lock_outline_rounded),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined),
+              ),
+              const SizedBox(height: 15,),
 
-            BottomButton(
-              buttonTitle: 'Change Password',
-              onPressed: () {},
-            )
-          ],
+              BottomButton(
+                buttonTitle: 'Change Password',
+                onPressed: () {},
+              )
+            ],
+          ),
         ),
       ),
     );
