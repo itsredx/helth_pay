@@ -5,6 +5,7 @@ import 'package:helth_pay/home.dart';
 import '../Components/round_edge_button.dart';
 import '../constants.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class ChangePINPage extends StatefulWidget {
   const ChangePINPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class ChangePINPage extends StatefulWidget {
 }
 
 class _ChangePINPageState extends State<ChangePINPage> {
-
+  get textEditingController => null;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
             setState(() {
               currentScreen = currentScreen;
               currentTab = currentTab;
-              Navigator.push(context, MaterialPageRoute(builder: (context){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Home();
               }));
             });
@@ -81,7 +82,8 @@ class _ChangePINPageState extends State<ChangePINPage> {
                     ),
                     const Text(
                       'Change PIN',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(
                       height: 10,
@@ -99,152 +101,66 @@ class _ChangePINPageState extends State<ChangePINPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEBEFF3),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40),
+                      child: PinCodeTextField(
+                        length: 4,
+                        obscureText: false,
+                        // animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                          activeColor: Color(myBlue),
+                          errorBorderColor: Color(myPink),
+                          inactiveFillColor: Colors.grey,
+                          inactiveColor: Colors.grey,
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(5),
+                          fieldHeight: 50,
+                          fieldWidth: 50,
+                          activeFillColor: Colors.white,
                         ),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEBEFF3),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEBEFF3),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEBEFF3),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                      ],
+                        // animationDuration: Duration(milliseconds: 300),
+                        // backgroundColor: Colors.blue.shade50,
+                        enableActiveFill: true,
+                        // errorAnimationController: errorController,
+                        controller: textEditingController,
+                        onCompleted: (v) {
+                          print("Completed");
+                        },
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            var currentText = value;
+                          });
+                        },
+                        beforeTextPaste: (text) {
+                          print("Allowing to paste $text");
+                          //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                          //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                          return true;
+                        },
+                        appContext: (context),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
             Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
+              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
               child: GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return RetypePINPage();
                   }));
                 },
-                child: BottomButton(buttonTitle: 'Proceed', ),
+                child: const BottomButton(
+                  buttonTitle: 'Proceed',
+                ),
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      buttonTitle: buttons[0],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[1],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[2],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[3],
-                      buttonColor: Colors.grey,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      buttonTitle: buttons[4],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[5],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[6],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[7],
-                      buttonColor: Colors.grey,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      buttonTitle: buttons[8],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[9],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[10],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[11],
-                      buttonColor: Colors.grey,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      buttonTitle: buttons[12],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[13],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[14],
-                      buttonColor: Colors.white,
-                    ),
-                    MyButton(
-                      buttonTitle: buttons[15],
-                      buttonColor: Color(myBlue),
-                    ),
-                  ],
-                ),
-              ],
-            )
           ],
         ),
       ),
     );
   }
 }
-
-
