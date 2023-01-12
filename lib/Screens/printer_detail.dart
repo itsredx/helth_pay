@@ -156,18 +156,42 @@ class _PrinterDetailsState extends State<PrinterDetails> {
   }
 
   void showBottomToast() => toast.showToast(
-    child: buildToast(),
+    child: buildToastOne(),
     gravity: ToastGravity.BOTTOM,
   );
 
-  Widget buildToast() => Container(
+  void showBottomToastTwo() => toast.showToast(
+    child: buildToastTwo(),
+    gravity: ToastGravity.BOTTOM,
+  );
+
+  Widget buildToastOne() => Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.black54,
         borderRadius: BorderRadius.circular(3),
       ),
       child: Row(
-        children: [
+        children: const [
+          Icon(Icons.error_outline, color: Colors.white),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Connecting to printer ',
+            style: TextStyle(color: Colors.white ,fontSize: 20),
+          )
+        ],
+      ));
+
+  Widget buildToastTwo() => Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.black54,
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: Row(
+        children: const [
           Icon(Icons.error_outline, color: Colors.white),
           SizedBox(
             width: 12,
