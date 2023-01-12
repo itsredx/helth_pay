@@ -1,5 +1,7 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:helth_pay/main.dart';
 import '../Components/round_edge_button.dart';
 import '../constants.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
@@ -208,8 +210,15 @@ class _RetypePINPageState extends State<RetypePINPage> {
                           currentScreen = const DashboardPage();
                           currentTab = 0;
                           Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return  PageStorage(bucket: bucket, child: Home() );
+                            return  PageStorage(bucket: bucket, child: MyHomePage(title: kUserName,) );
                           }));
+                          Flushbar(
+                            duration: Duration(seconds: 3),
+                            icon: Icon(Icons.error_outline_outlined, color: Colors.white,),
+                            message: 'PIN has been changed successfully',
+                            backgroundColor: Colors.black54,
+                            borderRadius: BorderRadius.circular(5),
+                          );
                         });
                       },
                       child: BottomButton(buttonTitle: 'Proceed'),

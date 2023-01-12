@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:helth_pay/Components/settings_tile.dart';
 import 'package:helth_pay/Screens/change_password_page.dart';
 import 'package:helth_pay/Screens/change_pin_page.dart';
@@ -18,6 +22,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  final userData = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,8 +146,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           setState(() {
                             currentScreen = const ChangePasswordPage();
                             currentTab = currentTab;
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return  PageStorage(bucket: bucket, child: Home() );
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return PageStorage(bucket: bucket, child: Home());
                             }));
                           });
                         },
@@ -172,8 +180,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           setState(() {
                             currentScreen = const ContactUsPage();
                             currentTab = currentTab;
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return  PageStorage(bucket: bucket, child: Home() );
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return PageStorage(bucket: bucket, child: Home());
                             }));
                           });
                         },
@@ -190,13 +199,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SettingsTiles(
                         tileTitle: 'Feedback',
-                        leftIcon: Icons.feedback_outlined,
+                        leftIconSvg: SvgPicture.asset(
+                          'lib/icons/comment-dots-Regular.svg',
+                          height: 1,
+                          color: Color(myBlue),
+                        ),//Icons.feedback_outlined,
                         onPressed: () {
                           setState(() {
                             currentScreen = const FeedbackPage();
                             currentTab = currentTab;
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return  PageStorage(bucket: bucket, child: Home() );
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return PageStorage(bucket: bucket, child: Home());
                             }));
                           });
                         },
@@ -210,6 +224,8 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
+                  userData.write('isLogged', false);
+                  // Get.offAll(LoginPage());
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -229,11 +245,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             RoundedEdgeButton(
                               buttonIcon: Icons.logout,
-                              buttonColor: Color(0xFFFAE6E7),
-                              buttonIconColor: Color(0xFFF2B5B2),
+                              buttonColor: Color(myLightPink),
+                              buttonIconColor: Color(myPink),
                               iconRotation: 39.4,
                             ),
                             SizedBox(
@@ -250,10 +266,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
+            Column(
+              children: const [
+                SizedBox(height: 25,),
+                Text(
+                  'App Version 1.2.0',
+                  style: TextStyle(fontSize: 10, color: Colors.grey),
+                ),
+                SizedBox(height: 10,),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 }
-

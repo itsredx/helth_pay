@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:helth_pay/Screens/welcome_screen.dart';
 import 'home.dart';
 
-void main() {
+void main() async{
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-      home: const MyHomePage(title: 'Hauwa Dalhatu'),
+      home: WelcomePage(),
+      //home: const MyHomePage(title: 'Hauwa Dalhatu'),
     );
   }
 }

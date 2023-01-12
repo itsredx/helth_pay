@@ -33,7 +33,10 @@ class RoundedEdgeButton extends StatelessWidget {
       ),
       child: Transform.rotate(
         angle: 315 * pi / iconRotation!,
-        child: child ?? MyIcon(buttonIcon: buttonIcon, buttonIconColor: buttonIconColor, iconSize: iconSize)
+        child: Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: child ?? MyIcon(buttonIcon: buttonIcon, buttonIconColor: buttonIconColor, iconSize: iconSize),
+        )
       ),
     );
   }

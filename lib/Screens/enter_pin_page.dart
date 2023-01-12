@@ -17,7 +17,7 @@ class EnterPINPage extends StatefulWidget {
 
 class _EnterPINPageState extends State<EnterPINPage> {
 
-  final String paymentStatus = 'Payment Declined';
+  final String paymentStatus = 'Payment is Successful';
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +77,13 @@ class _EnterPINPageState extends State<EnterPINPage> {
                       child: Container(
                         height: 35,
                         decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Color(0xFFEBEFF3),
                             borderRadius: BorderRadius.circular(7)),
                         child: TextField(
+                          textAlignVertical: TextAlignVertical.top,
+                          style: TextStyle(
+                            color: Colors.blueGrey
+                          ),
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -206,13 +210,13 @@ class _EnterPINPageState extends State<EnterPINPage> {
                                           paymentStatusIcon: Icons.error_outline_outlined,
                                           onPressed: () {
 
-                                          },
+                                          }, buttonTitle: 'Try again', buttonColor: myLightPink, iconColor: myPink,
                                         ):PaymentStatus(
                                           paymentStatus: 'Payment is Successful',
-                                          paymentStatusIcon: Icons.error_outline_outlined,
+                                          paymentStatusIcon: Icons.check_circle_outline_outlined,
                                           onPressed: () {
 
-                                          },
+                                          }, buttonTitle: 'Print Receipt', buttonColor: myLightBlue, iconColor: myBlue,
                                         )
                                       );
                                     });
@@ -242,45 +246,77 @@ class PaymentStatus extends StatelessWidget {
     Key? key,
     required this.paymentStatus,
     required this.paymentStatusIcon,
-    required this.onPressed,
+    required this.onPressed, required this.buttonTitle, required this.buttonColor, required this.iconColor,
   }) : super(key: key);
 
   final String paymentStatus;
   final IconData paymentStatusIcon;
   final VoidCallback onPressed;
+  final String buttonTitle;
+  final int buttonColor;
+  final int iconColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 40,
       padding: const EdgeInsets.all(10.0),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Row(
+            mainAxisAlignment:
+            MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children: const [
+                    Text(
+                      'close',
+                      style: TextStyle(
+                          color: Colors.grey),
+                    ),
+                    Icon(
+                      Icons.close_rounded,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                color: Colors.pinkAccent,
+                color: Color(buttonColor),
                 borderRadius: BorderRadius.circular(25)),
+            child: Icon(paymentStatusIcon, color: Color(iconColor),size: 40,),
           ),
-          Text(
-            paymentStatus,
-            style: TextStyle(fontWeight: FontWeight.w500),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              paymentStatus,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           Text(
             paymentStatus == 'Payment Declined' ? 'Insufficient Balance' : '',
             style: TextStyle(color: Colors.grey, fontSize: 10),
           ),
           Padding(
-            padding: EdgeInsets.all(25.0),
+            padding: EdgeInsets.only(right: 17.0, left: 17, top: 25, bottom: 12),
             child: GestureDetector(
                 onTap: onPressed,
-                child: BottomButton(buttonTitle: 'Try Again')),
-          )
+                child: BottomButton(buttonTitle: buttonTitle),
+          ),)
         ],
       ),
     );

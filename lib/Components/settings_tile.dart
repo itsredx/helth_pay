@@ -7,13 +7,14 @@ class SettingsTiles extends StatelessWidget {
   const SettingsTiles({
     Key? key,
     required this.tileTitle,
-    required this.leftIcon,
-    this.onPressed,
+     this.leftIcon,
+    this.onPressed, this.leftIconSvg,
   }) : super(key: key);
 
   final String tileTitle;
-  final IconData leftIcon;
+  final IconData? leftIcon;
   final VoidCallback? onPressed;
+  final Widget? leftIconSvg;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class SettingsTiles extends StatelessWidget {
             RoundedEdgeButton(
               buttonIcon: leftIcon,
               iconRotation: 39.4,
+              child: leftIconSvg,
             ),
             const SizedBox(
               width: 15,

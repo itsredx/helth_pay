@@ -5,6 +5,7 @@ import '../constants.dart';
 import '../home.dart';
 import 'connect_printer_screen.dart';
 import 'dashboard_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PrinterDetails extends StatefulWidget {
   const PrinterDetails({Key? key, required this.printerName}) : super(key: key);
@@ -57,8 +58,7 @@ class _PrinterDetailsState extends State<PrinterDetails> {
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(5)
-                ),
+                    borderRadius: BorderRadius.circular(5)),
                 height: 200,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -66,7 +66,8 @@ class _PrinterDetailsState extends State<PrinterDetails> {
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: RoundedEdgeButton(buttonIcon: Icons.print_outlined,
+                      child: RoundedEdgeButton(
+                        buttonIcon: Icons.print_outlined,
                         iconRotation: 39.4,
                         height: 50,
                         width: 50,
@@ -77,8 +78,11 @@ class _PrinterDetailsState extends State<PrinterDetails> {
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:  [
-                          const Text('Printer Name', style: TextStyle(color: Colors.grey),),
+                        children: [
+                          const Text(
+                            'Printer Name',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                           Text(printerName)
                         ],
                       ),
@@ -95,10 +99,17 @@ class _PrinterDetailsState extends State<PrinterDetails> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('Printer Status',style: TextStyle(color: Colors.grey),),
+                          const Text(
+                            'Printer Status',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                           Row(
                             children: const [
-                              Icon(Icons.circle, size: 13, color: Colors.green,),
+                              Icon(
+                                Icons.circle,
+                                size: 13,
+                                color: Colors.green,
+                              ),
                               Text(' Connected'),
                             ],
                           )
@@ -108,18 +119,20 @@ class _PrinterDetailsState extends State<PrinterDetails> {
                   ],
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               GestureDetector(
-                onTap:(){
-                  setState(() {
-                    currentTab = 1;
-                    currentScreen = ConnectPrinter();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                          return PageStorage(bucket: bucket, child: Home());
-                        }));
-                  });
-                },
+                onTap: showToast,
+                  // setState(() {
+                  //   currentTab = 1;
+                  //   currentScreen = ConnectPrinter();
+                  //   Navigator.push(context,
+                  //       MaterialPageRoute(builder: (context) {
+                  //     return PageStorage(bucket: bucket, child: Home());
+                  //   }));
+                  // });
+
                 child: const BottomButton(
                   buttonTitle: 'Connect Printer',
                 ),
@@ -131,3 +144,13 @@ class _PrinterDetailsState extends State<PrinterDetails> {
     );
   }
 }
+
+void showToast() => Fluttertoast.showToast(
+    msg: 'Connected successfully',
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 2,
+    backgroundColor: Colors.black54,
+    textColor: Colors.white,
+    fontSize: 16,
+  );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helth_pay/Components/my_divider.dart';
 import 'package:helth_pay/Components/Contact_us_tile.dart';
+import 'package:helth_pay/Screens/bottom_sheet.dart';
 import 'package:helth_pay/Screens/profile_page.dart';
 import '../Components/bottom_button.dart';
 import '../constants.dart';
@@ -24,7 +25,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           onPressed: () {
             setState(() {
               currentScreen = ProfilePage();
-              Navigator.push(context, MaterialPageRoute(builder: (context){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Home();
               }));
             });
@@ -122,14 +123,175 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 15,),
-              BottomButton(
-                buttonTitle: 'Submit',
-                onPressed: (){},
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return BottomSheetContainer(
+                        child: FeedbackSuccess(
+                          changeStatusIcon: Icons.check_circle_outline_outlined,
+                          buttonTitle: 'Back to Profile',
+                          buttonColor: myLightBlue,
+                          iconColor: myBlue,
+                          onClosePressed: (){
+                            Navigator.pop(context);
+                          },
+                          onPressed: () {
+                            setState(
+                              () {
+                                currentTab = currentTab;
+                                currentScreen = const ProfilePage();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const Home();
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const BottomButton(
+                  buttonTitle: 'Submit',
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FeedbackSuccess extends StatelessWidget {
+  const FeedbackSuccess({
+    Key? key,
+    this.passwordChangeStatus,
+    required this.changeStatusIcon,
+    this.onPressed,
+    required this.buttonTitle,
+    required this.buttonColor,
+    required this.iconColor,
+    this.onClosePressed,
+  }) : super(key: key);
+
+  final String? passwordChangeStatus;
+  final IconData changeStatusIcon;
+  final VoidCallback? onPressed;
+  final String buttonTitle;
+  final int buttonColor;
+  final int iconColor;
+  final VoidCallback? onClosePressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      padding: const EdgeInsets.all(10.0),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: //onClosePressed,
+                    () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children:  [
+                    const Text(
+                      'close ',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey, width: 2),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.close_rounded,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+                color: Color(buttonColor),
+                borderRadius: BorderRadius.circular(25)),
+            child: Icon(
+              changeStatusIcon,
+              color: Color(iconColor),
+              size: 40,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8),
+          //   child: Text(
+          //     passwordChangeStatus,
+          //     style: const TextStyle(fontWeight: FontWeight.bold),
+          //   ),
+          // ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            'Thank you!',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          const Text(
+            'By making your voice heard you',
+            style: TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+          const Text(
+            'help us improve BelloKano Pay',
+            style: TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 40.0,
+              left: 40,
+              top: 10,
+            ),
+            child: GestureDetector(
+              onTap: onPressed,
+              child: BottomButton(
+                buttonTitle: buttonTitle,
+                color: Color(myBlue),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

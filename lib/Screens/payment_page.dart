@@ -166,6 +166,7 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
               GestureDetector(
                 onTap: (){
+
                   showInvoice == false ? setState(() {
                     inputValue == Data['Invoice Number'] ? showInvoice = true : showInvoice = false;
                   }): Navigator.push(context, MaterialPageRoute(builder: (context){

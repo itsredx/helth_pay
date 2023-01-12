@@ -38,6 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.3.0
   flutter_svg: ^1.1.6
+  another_flushbar: ^1.12.29
+  get: ^4.6.5
+  get_storage: ^2.0.3
+  fluttertoast: ^8.1.2
 
 dev_dependencies:
   flutter_test:

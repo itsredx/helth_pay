@@ -17,7 +17,7 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 270,
       color: const Color.fromRGBO(108, 110, 111, 1),
       child: Padding(
         padding: const EdgeInsets.symmetric(

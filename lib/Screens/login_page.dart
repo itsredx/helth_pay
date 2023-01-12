@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:helth_pay/Components/bottom_button.dart';
 import 'package:helth_pay/Components/my_text_field.dart';
 import 'package:helth_pay/Screens/create_pin_page.dart';
 import '../constants.dart';
 import '../home.dart';
+import '../main.dart';
 import 'dashboard_page.dart';
+import 'package:get_storage/get_storage.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,6 +19,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  final userData = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +80,9 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: GestureDetector(
                       onTap: (){
+                        userData.write('isLogged', true);
+
+                        // Get.offAll(MyHomePage(title: kUserName));
                         setState(() {
                           currentScreen = const DashboardPage();
                           currentTab = 0;
