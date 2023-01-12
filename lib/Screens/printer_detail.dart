@@ -17,6 +17,17 @@ class PrinterDetails extends StatefulWidget {
 }
 
 class _PrinterDetailsState extends State<PrinterDetails> {
+
+  final toast = FToast();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    toast.init(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final String printerName = widget.printerName;
@@ -124,14 +135,14 @@ class _PrinterDetailsState extends State<PrinterDetails> {
               ),
               GestureDetector(
                 onTap: showToast,
-                  // setState(() {
-                  //   currentTab = 1;
-                  //   currentScreen = ConnectPrinter();
-                  //   Navigator.push(context,
-                  //       MaterialPageRoute(builder: (context) {
-                  //     return PageStorage(bucket: bucket, child: Home());
-                  //   }));
-                  // });
+                // setState(() {
+                //   currentTab = 1;
+                //   currentScreen = ConnectPrinter();
+                //   Navigator.push(context,
+                //       MaterialPageRoute(builder: (context) {
+                //     return PageStorage(bucket: bucket, child: Home());
+                //   }));
+                // });
 
                 child: const BottomButton(
                   buttonTitle: 'Connect Printer',
@@ -143,14 +154,42 @@ class _PrinterDetailsState extends State<PrinterDetails> {
       ),
     );
   }
+
+  void showBottomToast() => toast.showToast(
+    child: buildToast(),
+    gravity: ToastGravity.BOTTOM,
+  );
+
+  Widget buildToast() => Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.black54,
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.error_outline, color: Colors.white),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Connection Successful',
+            style: TextStyle(color: Colors.white ,fontSize: 20),
+          )
+        ],
+      ));
+
+
 }
 
 void showToast() => Fluttertoast.showToast(
-    msg: 'Connected successfully',
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 2,
-    backgroundColor: Colors.black54,
-    textColor: Colors.white,
-    fontSize: 16,
-  );
+      msg: 'Connected successfully',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 2,
+      backgroundColor: Colors.black54,
+      textColor: Colors.white,
+      fontSize: 16,
+    );
+
+
