@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:helth_pay/main.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../Components/round_edge_button.dart';
@@ -17,74 +18,18 @@ class RetypePINPage extends StatefulWidget {
 }
 
 class _RetypePINPageState extends State<RetypePINPage> {
-  final List<dynamic> buttons = [
-    const Text(
-      '1',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '2',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '3',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '-',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '4',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '5',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '6',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(Icons.space_bar_rounded),
-    const Text(
-      '7',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '8',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '9',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(Icons.backspace_outlined),
-    const Text(
-      '/',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '0',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '.',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(
-      Icons.transit_enterexit_outlined,
-      color: Colors.white,
-    ),
-  ];
+
+  final userData = GetStorage();
 
   get textEditingController => null;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color(0xFFEBEFF3),
-      appBar: AppBar(
+      appBar:userData.read('isLogged') == false ?
+      AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
@@ -99,7 +44,7 @@ class _RetypePINPageState extends State<RetypePINPage> {
           'Retype PIN',
           style: TextStyle(color: Colors.black, fontSize: 15),
         ),
-      ),
+      ):null,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -166,8 +111,8 @@ class _RetypePINPageState extends State<RetypePINPage> {
                         pinTheme: PinTheme(
                           activeColor: Color(myBlue),
                           errorBorderColor: Color(myPink),
-                          inactiveFillColor: Colors.grey,
-                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Color(myGrey),
+                          inactiveColor: Color(myGrey),
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,

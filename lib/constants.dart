@@ -23,6 +23,7 @@ int myBlue = 0xFF016BFB;
 int myLightBlue = 0xFFE4F1FE;
 int myPink = 0xFFF2B5B2;
 int myLightPink = 0xFFFAE6E7;
+int myGrey = 0xFFEBEFF3;
 
 
 bool kHomePage = true;

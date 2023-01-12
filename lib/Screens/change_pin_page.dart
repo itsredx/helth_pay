@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:helth_pay/Screens/retype_pin_page.dart';
 import 'package:helth_pay/home.dart';
 import '../Components/round_edge_button.dart';
@@ -15,23 +16,21 @@ class ChangePINPage extends StatefulWidget {
 }
 
 class _ChangePINPageState extends State<ChangePINPage> {
+  final userData = GetStorage();
   get textEditingController => null;
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEBEFF3),
-      appBar: AppBar(
+      appBar: userData.read('isLogged') == false ?AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            setState(() {
-              currentScreen = currentScreen;
-              currentTab = currentTab;
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Home();
-              }));
-            });
+            Navigator.pop(context);
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -39,10 +38,10 @@ class _ChangePINPageState extends State<ChangePINPage> {
           ),
         ),
         title: const Text(
-          'Change PIN',
+          'Retype PIN',
           style: TextStyle(color: Colors.black, fontSize: 15),
         ),
-      ),
+      ):null,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -110,8 +109,8 @@ class _ChangePINPageState extends State<ChangePINPage> {
                         pinTheme: PinTheme(
                           activeColor: Color(myBlue),
                           errorBorderColor: Color(myPink),
-                          inactiveFillColor: Colors.grey,
-                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Color(myGrey),
+                          inactiveColor: Color(myGrey),
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,

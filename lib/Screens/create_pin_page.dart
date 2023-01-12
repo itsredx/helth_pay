@@ -14,89 +14,30 @@ class CreatePINPage extends StatefulWidget {
 }
 
 class _CreatePINPageState extends State<CreatePINPage> {
-  final List<dynamic> buttons = [
-    const Text(
-      '1',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '2',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '3',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '-',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '4',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '5',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '6',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(Icons.space_bar_rounded),
-    const Text(
-      '7',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '8',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '9',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(Icons.backspace_outlined),
-    const Text(
-      '/',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '0',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Text(
-      '.',
-      style: TextStyle(fontSize: 20),
-    ),
-    const Icon(
-      Icons.transit_enterexit_outlined,
-      color: Colors.white,
-    ),
-  ];
+
 
   get textEditingController => null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEBEFF3),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-        ),
-        title: const Text(
-          'Create PIN',
-          style: TextStyle(color: Colors.black, fontSize: 15),
-        ),
-      ),
+      backgroundColor:  Color(myGrey),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //     icon: const Icon(
+      //       Icons.arrow_back,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      //   title: const Text(
+      //     'Create PIN',
+      //     style: TextStyle(color: Colors.black, fontSize: 15),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -163,8 +104,8 @@ class _CreatePINPageState extends State<CreatePINPage> {
                         pinTheme: PinTheme(
                           activeColor: Color(myBlue),
                           errorBorderColor: Color(myPink),
-                          inactiveFillColor: Colors.grey,
-                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Color(myGrey),
+                          inactiveColor: Color(myGrey),
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(5),
                           fieldHeight: 50,
